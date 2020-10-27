@@ -1,24 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-    <name>[XND] Nocturnal Animals</name>
-    <author>XeoNovaDan</author>
-    <packageId>XeoNovaDan.NocturnalAnimals</packageId>
-    <url>https://steamcommunity.com/sharedfiles/filedetails/?id=2004368312</url>
-    <description>Current version: v1.0.2.0 (2nd March 2020)\n\nAdds nocturnal and crepuscular animal sleeping cycles.</description>
-    <supportedVersions>
-        <li>1.1</li>
-    </supportedVersions>
-    <modDependencies>
-		<li>
-			<packageId>brrainz.harmony</packageId>
-			<displayName>Harmony</displayName>
-			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
-			<steamWorkshopUrl>https://steamcommunity.com/workshop/filedetails/?id=2009463077</steamWorkshopUrl>
-		</li>
-    </modDependencies>
-    <loadAfter>
-        <li>Ludeon.RimWorld</li>
-        <li>Ludeon.RimWorld.Royalty</li>
-        <li>brrainz.harmony</li>
-    </loadAfter>
+  <name>[XND] Nocturnal Animals (Continued)</name>
+  <packageId>Mlie.XNDNocturnalAnimals</packageId>
+  <author>XeoNovaDan</author>
+  <url>https://github.com/emipa606/XNDNocturnalAnimals</url>
+  <supportedVersions>
+    <li>1.1</li>
+    <li>1.2</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+  </loadAfter>
+  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+Update of XeoNovaDans mod
+https://steamcommunity.com/sharedfiles/filedetails/?id=2004368312
+
+- Added russian translation by Reiquard
+
+[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+
+[table]
+    [tr]
+        [td][url=https://invite.gg/Mlie][img]https://i.imgur.com/zdzzBrc.png[/img][/url][/td]
+        [td][url=https://github.com/emipa606/XNDNocturnalAnimals][img]https://i.imgur.com/kTkpTOE.png[/img][/url][/td]
+    [/tr]
+[/table]
+	
+[img]https://i.imgur.com/NOW7jU1.png[/img]
+[h1][b]Overview[/b][/h1]
+Adds an extra layer of immersion to RimWorld by implementing different types of body clocks for animals - foxes for instance will actually sleep through the day and roam during the night just like real life!
+
+There are now three types of circadian rhythms implemented in RimWorld:
+
+[b]Diurnal -[/b] Animals are awake during the day and sleep through the night. This is the default vanilla behaviour.
+
+[b]Nocturnal -[/b] Animals are awake during the night and sleep through the day. This matches a night owl's sleeping schedule.
+
+[b]Crepuscular -[/b] Animals are awake during mornings and evenings, and rest through the peak of day and the dead of night.
+
+You can see what body clock type an animal has by viewing their info card. 
+
+Powered by the Harmony Patch Library.
+
+[h1][b]Compatibility[/b][/h1]
+[b]Mods:[/b]
+Fully functional with all Vanilla Animals Expanded mods.
+
+Mod-added animals that aren't patched to utilise this mod will all be diurnal - please see the 'Links' section for a guide on patching animals.
+
+[b]Saves:[/b]
+This can safely be added to and removed from ongoing savegames.
+
+[h1][b]Credits[/b][/h1]
+KalkiKrosah for the idea
+Brrainz for his tireless work on the Harmony Patch Library
+Marnador for their fantastic RimWorld-style font
+
+[h1][b]Links[/b][/h1]
+GitHub releases: https://github.com/XeoNovaDan/NocturnalAnimals/releases
+Documentation for modders: https://github.com/XeoNovaDan/NocturnalAnimals/wiki
+Source code: https://github.com/XeoNovaDan/NocturnalAnimals</description>
 </ModMetaData>

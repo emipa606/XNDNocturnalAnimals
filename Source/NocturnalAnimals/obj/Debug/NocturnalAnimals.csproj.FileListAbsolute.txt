@@ -1,3 +1,0 @@
-D:\Documents\GitHub\NocturnalAnimals\1.1\Assemblies\NocturnalAnimals.dll
-D:\Documents\GitHub\NocturnalAnimals\Source\NocturnalAnimals\obj\Debug\NocturnalAnimals.csprojAssemblyReference.cache
-D:\Documents\GitHub\NocturnalAnimals\Source\NocturnalAnimals\obj\Debug\NocturnalAnimals.dll
