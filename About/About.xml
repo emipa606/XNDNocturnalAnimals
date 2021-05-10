@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>[XND] Nocturnal Animals (Continued)</name>
   <packageId>Mlie.XNDNocturnalAnimals</packageId>
@@ -25,6 +25,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2004368312
 
 - Added russian translation by Reiquard
 - Added support for [url=https://steamcommunity.com/sharedfiles/itemedittext/?id=2070686241]Legacy Ark[/url]
+- French translation added, thanks qux!
 
 [img]https://i.imgur.com/7Gzt3Rg.png[/img]
 
@@ -77,6 +78,6 @@ Documentation for modders: https://github.com/XeoNovaDan/NocturnalAnimals/wiki
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
 [/list]
+
 </description>
 </ModMetaData>
-
