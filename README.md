@@ -31,7 +31,7 @@ There are now three types of circadian rhythms implemented in RimWorld:
 
 **Diurnal -** Animals are awake during the day and sleep through the night. This is the default vanilla behaviour.
 
-**Nocturnal -** Animals are awake during the night and sleep through the day. This matches a night owl's sleeping schedule.
+**Nocturnal -** Animals are awake during the night and sleep through the day. This matches a night owl&apos;s sleeping schedule.
 
 **Crepuscular -** Animals are awake during mornings and evenings, and rest through the peak of day and the dead of night.
 
@@ -44,7 +44,7 @@ Powered by the Harmony Patch Library.
 **Mods:**
 Fully functional with all Vanilla Animals Expanded mods.
 
-Mod-added animals that aren't patched to utilise this mod will all be diurnal - please see the 'Links' section for a guide on patching animals.
+Mod-added animals that aren&apos;t patched to utilise this mod will all be diurnal - please see the &apos;Links&apos; section for a guide on patching animals.
 
 **Saves:**
 This can safely be added to and removed from ongoing savegames.
