@@ -28,7 +28,7 @@ namespace NocturnalAnimals
                     // Effectively turn 'if (num < 7 || num > 21)' into 'if (SleepHourFor(num, pawn))'
                     //Log.Message(instruction.operand?.GetType()?.ToStringSafe());
                     if (!done && instruction.opcode == OpCodes.Ldloc_S &&
-                        ((LocalBuilder) instruction.operand).LocalIndex == 4)
+                        ((LocalBuilder)instruction.operand).LocalIndex == 4)
                     {
 #if DEBUG
                             Log.Message("JobGiver_GetRest.GetPriority match 1 of 2");
@@ -66,23 +66,21 @@ namespace NocturnalAnimals
 
             public static bool SleepHourFor(int hour, Pawn pawn)
             {
-                var extendedRaceProps = ExtendedRaceProperties.Get(pawn.def);
-
-                if (extendedRaceProps == null)
+                if (!NocturnalAnimalsMod.instance.Settings.AnimalSleepType.ContainsKey(pawn.def.defName))
                 {
                     return hour < 7 || hour > 21;
                 }
 
-                switch (extendedRaceProps.bodyClock)
+                switch ((BodyClock)NocturnalAnimalsMod.instance.Settings.AnimalSleepType[pawn.def.defName])
                 {
-                    case BodyClock.Diurnal:
-                        return hour < 7 || hour > 21;
-
                     case BodyClock.Crepuscular:
                         return hour > 21 || hour < 2 || hour is > 10 and < 15;
 
                     case BodyClock.Nocturnal:
                         return hour is > 10 and < 19;
+
+                    case BodyClock.Cathemeral:
+                        return Rand.Bool;
 
                     default:
                         return hour < 7 || hour > 21;

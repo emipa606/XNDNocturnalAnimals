@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+	<HugsLib.UpdateFeatureDef Abstract="true" Name="UpdateFeatureBase">
+		<modNameReadable>XNDNocturnalAnimals</modNameReadable>
+		<linkUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2269731409</linkUrl>
+	</HugsLib.UpdateFeatureDef>
+	<HugsLib.UpdateFeatureDef ParentName="UpdateFeatureBase">
+		<defName>XNDNocturnalAnimals_1_0_5_0</defName>
+		<assemblyVersion>1.0.5.0</assemblyVersion>
+		<content>The mod now has setting for changing the sleep-pattern for all animals. There is also an added type, Cathemeral, for animals that dont fit into any of the other categories. These animals sleep whenever they feel like it.
+</content>
+	</HugsLib.UpdateFeatureDef>
+</Defs>
+

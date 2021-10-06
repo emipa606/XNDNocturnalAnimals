@@ -4,6 +4,7 @@
     {
         Diurnal,
         Nocturnal,
-        Crepuscular
+        Crepuscular,
+        Cathemeral
     }
 }

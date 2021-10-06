@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>[XND] Nocturnal Animals (Continued)</name>
   <packageId>Mlie.XNDNocturnalAnimals</packageId>
@@ -20,7 +20,7 @@
   <loadAfter>
     <li>brrainz.harmony</li>
   </loadAfter>
-  <description>[img]https://i.imgur.com/WAEzk68.png[/img]
+  <description>[img]https://i.imgur.com/buuPQel.png[/img]
 Update of XeoNovaDans mod
 https://steamcommunity.com/sharedfiles/filedetails/?id=2004368312
 
@@ -28,7 +28,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2004368312
 - Added support for [url=https://steamcommunity.com/sharedfiles/itemedittext/?id=2070686241]Legacy Ark[/url]
 - French translation added, thanks qux!
 
-[img]https://i.imgur.com/7Gzt3Rg.png[/img]
+[img]https://i.imgur.com/pufA0kM.png[/img]
 
 [table]
     [tr]
@@ -37,7 +37,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2004368312
     [/tr]
 [/table]
 	
-[img]https://i.imgur.com/NOW7jU1.png[/img]
+[img]https://i.imgur.com/Z4GOv8H.png[/img]
 [h1][b]Overview[/b][/h1]
 Adds an extra layer of immersion to RimWorld by implementing different types of body clocks for animals - foxes for instance will actually sleep through the day and roam during the night just like real life!
 
@@ -45,7 +45,7 @@ There are now three types of circadian rhythms implemented in RimWorld:
 
 [b]Diurnal -[/b] Animals are awake during the day and sleep through the night. This is the default vanilla behaviour.
 
-[b]Nocturnal -[/b] Animals are awake during the night and sleep through the day. This matches a night owl&apos;s sleeping schedule.
+[b]Nocturnal -[/b] Animals are awake during the night and sleep through the day. This matches a night owl's sleeping schedule.
 
 [b]Crepuscular -[/b] Animals are awake during mornings and evenings, and rest through the peak of day and the dead of night.
 
@@ -57,7 +57,7 @@ Powered by the Harmony Patch Library.
 [b]Mods:[/b]
 Fully functional with all Vanilla Animals Expanded mods.
 
-Mod-added animals that aren&apos;t patched to utilise this mod will all be diurnal - please see the &apos;Links&apos; section for a guide on patching animals.
+Mod-added animals that aren't patched to utilise this mod will all be diurnal - please see the 'Links' section for a guide on patching animals.
 
 [b]Saves:[/b]
 This can safely be added to and removed from ongoing savegames.
@@ -70,7 +70,7 @@ Marnador for their fantastic RimWorld-style font
 [h1][b]Links[/b][/h1]
 Documentation for modders: https://github.com/XeoNovaDan/NocturnalAnimals/wiki
 
-[img]https://i.imgur.com/Rs6T6cr.png[/img]
+[img]https://i.imgur.com/PwoNOj4.png[/img]
 [list]
 [*] See if the the error persists if you just have this mod and its requirements active.
 [*] If not, try adding your other mods until it happens again.
@@ -79,6 +79,5 @@ Documentation for modders: https://github.com/XeoNovaDan/NocturnalAnimals/wiki
 [*] Do not report errors by making a discussion-thread, I get no notification of that.
 [*] If you have the solution for a problem, please post it to the GitHub repository.
 [/list]
-
 </description>
 </ModMetaData>
