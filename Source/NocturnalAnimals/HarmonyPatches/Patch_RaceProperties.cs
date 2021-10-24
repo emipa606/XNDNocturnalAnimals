@@ -16,7 +16,7 @@ namespace NocturnalAnimals
                 __result = __result.AddItem(new StatDrawEntry(StatCategoryDefOf.BasicsPawn,
                     "NocturnalAnimals.BodyClock".Translate(),
                     $"NocturnalAnimals.BodyClock_{ExtendedRaceProperties.Get(parentDef).bodyClock}".Translate(),
-                    "NocturnalAnimals.BodyClock_Description".Translate(), 2500));
+                    "NocturnalAnimals.BodyClock_Description".Translate(), 2090));
             }
         }
     }
