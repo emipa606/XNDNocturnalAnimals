@@ -8,6 +8,8 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2004368312
 - Added russian translation by Reiquard
 - Added support for https://steamcommunity.com/sharedfiles/itemedittext/?id=2070686241]Legacy Ark
 - French translation added, thanks qux!
+- Added in-game settings for all animals
+- Added the Cathemeral type, for animals that dont fit in to the other categories
 
 ![Image](https://i.imgur.com/pufA0kM.png)
 
