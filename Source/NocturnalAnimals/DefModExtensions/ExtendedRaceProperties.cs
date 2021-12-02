@@ -1,16 +1,15 @@
 ﻿using Verse;
 
-namespace NocturnalAnimals
+namespace NocturnalAnimals;
+
+public class ExtendedRaceProperties : DefModExtension
 {
-    public class ExtendedRaceProperties : DefModExtension
+    private static readonly ExtendedRaceProperties defaultValues = new ExtendedRaceProperties();
+
+    public BodyClock bodyClock;
+
+    public static ExtendedRaceProperties Get(Def def)
     {
-        private static readonly ExtendedRaceProperties defaultValues = new ExtendedRaceProperties();
-
-        public BodyClock bodyClock;
-
-        public static ExtendedRaceProperties Get(Def def)
-        {
-            return def.GetModExtension<ExtendedRaceProperties>() ?? defaultValues;
-        }
+        return def.GetModExtension<ExtendedRaceProperties>() ?? defaultValues;
     }
 }

@@ -1,10 +1,9 @@
-﻿namespace NocturnalAnimals
+﻿namespace NocturnalAnimals;
+
+public enum BodyClock
 {
-    public enum BodyClock
-    {
-        Diurnal,
-        Nocturnal,
-        Crepuscular,
-        Cathemeral
-    }
+    Diurnal,
+    Nocturnal,
+    Crepuscular,
+    Cathemeral
 }
