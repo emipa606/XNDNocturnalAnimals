@@ -12,4 +12,24 @@ public class ExtendedRaceProperties : DefModExtension
     {
         return def.GetModExtension<ExtendedRaceProperties>() ?? defaultValues;
     }
+
+
+    public static void Update(ThingDef animal)
+    {
+        if (NocturnalAnimalsMod.instance.Settings.AnimalSleepType.ContainsKey(animal.defName))
+        {
+            return;
+        }
+
+        var extendedRaceProps = Get(animal);
+        if (extendedRaceProps == null)
+        {
+            NocturnalAnimalsMod.instance.Settings.AnimalSleepType[animal.defName] = 0;
+            return;
+        }
+
+
+        NocturnalAnimalsMod.instance.Settings.AnimalSleepType[animal.defName] =
+            (int)extendedRaceProps.bodyClock;
+    }
 }

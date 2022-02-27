@@ -81,7 +81,6 @@ internal class NocturnalAnimalsMod : Mod
         return "[XND] Nocturnal Animals";
     }
 
-
     private static void DrawButton(Action action, string text, Vector2 pos)
     {
         var rect = new Rect(pos.x, pos.y, buttonSize.x, buttonSize.y);

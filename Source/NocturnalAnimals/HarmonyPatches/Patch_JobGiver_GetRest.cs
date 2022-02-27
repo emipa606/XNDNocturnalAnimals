@@ -68,13 +68,13 @@ public static class Patch_JobGiver_GetRest
         {
             if (!NocturnalAnimalsMod.instance.Settings.AnimalSleepType.ContainsKey(pawn.def.defName))
             {
-                return hour < 7 || hour > 21;
+                return hour is < 7 or > 21;
             }
 
             switch ((BodyClock)NocturnalAnimalsMod.instance.Settings.AnimalSleepType[pawn.def.defName])
             {
                 case BodyClock.Crepuscular:
-                    return hour > 21 || hour < 2 || hour is > 10 and < 15;
+                    return hour is > 21 or < 2 or > 10 and < 15;
 
                 case BodyClock.Nocturnal:
                     return hour is > 10 and < 19;
@@ -83,7 +83,7 @@ public static class Patch_JobGiver_GetRest
                     return Rand.Bool;
 
                 default:
-                    return hour < 7 || hour > 21;
+                    return hour is < 7 or > 21;
             }
         }
     }

@@ -1,5 +1,8 @@
 # Changelog for XNDNocturnalAnimals
 
+1.3.3 - Fixed the mod-settings not having full effect, sleep schedule was applied but the info in the infocard was wrong
+
+
 1.3.2 - More unique defname for the HugLib-news base-definition, to avoid conflicts with other mods
 
 

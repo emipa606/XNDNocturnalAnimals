@@ -19,30 +19,16 @@ public class NocturnalAnimals
         AllAnimals = DefDatabase<ThingDef>.AllDefsListForReading
             .Where(def => def.race is { Animal: true })
             .OrderBy(def => def.label).ToList();
-        UpdateAnimalSleepTypesFromDefs();
+        UpdateAnimalSleepTypes();
         var HarmonyInstance = new Harmony("XeoNovaDan.NocturnalAnimals");
         HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
     }
 
-    public static void UpdateAnimalSleepTypesFromDefs()
+    public static void UpdateAnimalSleepTypes()
     {
         foreach (var animal in AllAnimals)
         {
-            if (NocturnalAnimalsMod.instance.Settings.AnimalSleepType.ContainsKey(animal.defName))
-            {
-                continue;
-            }
-
-            var extendedRaceProps = ExtendedRaceProperties.Get(animal);
-
-            if (extendedRaceProps == null || extendedRaceProps.bodyClock == default)
-            {
-                NocturnalAnimalsMod.instance.Settings.AnimalSleepType[animal.defName] = 0;
-                continue;
-            }
-
-            NocturnalAnimalsMod.instance.Settings.AnimalSleepType[animal.defName] =
-                (int)extendedRaceProps.bodyClock;
+            ExtendedRaceProperties.Update(animal);
         }
     }
 }

@@ -28,6 +28,6 @@ internal class NocturnalAnimalsSettings : ModSettings
         animalSleepTypeKeys = new List<string>();
         animalSleepTypeValues = new List<int>();
         AnimalSleepType = new Dictionary<string, int>();
-        NocturnalAnimals.UpdateAnimalSleepTypesFromDefs();
+        NocturnalAnimals.UpdateAnimalSleepTypes();
     }
 }
