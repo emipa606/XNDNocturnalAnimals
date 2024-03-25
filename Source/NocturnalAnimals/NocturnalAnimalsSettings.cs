@@ -25,8 +25,8 @@ internal class NocturnalAnimalsSettings : ModSettings
 
     public void ResetManualValues()
     {
-        animalSleepTypeKeys = new List<string>();
-        animalSleepTypeValues = new List<int>();
+        animalSleepTypeKeys = [];
+        animalSleepTypeValues = [];
         AnimalSleepType = new Dictionary<string, int>();
         NocturnalAnimals.UpdateAnimalSleepTypes();
     }

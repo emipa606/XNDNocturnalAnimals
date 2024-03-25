@@ -66,12 +66,12 @@ public static class Patch_JobGiver_GetRest
 
         public static bool SleepHourFor(int hour, Pawn pawn)
         {
-            if (!NocturnalAnimalsMod.instance.Settings.AnimalSleepType.ContainsKey(pawn.def.defName))
+            if (!NocturnalAnimalsMod.instance.Settings.AnimalSleepType.TryGetValue(pawn.def.defName, out var value))
             {
                 return hour is < 7 or > 21;
             }
 
-            switch ((BodyClock)NocturnalAnimalsMod.instance.Settings.AnimalSleepType[pawn.def.defName])
+            switch ((BodyClock)value)
             {
                 case BodyClock.Crepuscular:
                     return hour is > 21 or < 2 or > 10 and < 15;

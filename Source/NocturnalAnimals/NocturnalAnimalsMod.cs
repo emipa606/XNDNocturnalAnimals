@@ -51,8 +51,7 @@ internal class NocturnalAnimalsMod : Mod
         }
 
         currentVersion =
-            VersionFromManifest.GetVersionFromModMetaData(
-                ModLister.GetActiveModWithIdentifier("Mlie.XNDNocturnalAnimals"));
+            VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
     }
 
     /// <summary>
@@ -186,9 +185,9 @@ internal class NocturnalAnimalsMod : Mod
             var section = selectorRect.width / 4;
             var sectionVertical = selectorRect.height / 7 * 3;
             var selectedValue = 0;
-            if (instance.Settings.AnimalSleepType.ContainsKey(animal.defName))
+            if (instance.Settings.AnimalSleepType.TryGetValue(animal.defName, out var value))
             {
-                selectedValue = instance.Settings.AnimalSleepType[animal.defName];
+                selectedValue = value;
             }
 
             Widgets.Label(new Rect(selectorRect.position, new Vector2(selectorRect.width / 2, sectionVertical)),

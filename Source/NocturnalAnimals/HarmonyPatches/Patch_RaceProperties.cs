@@ -13,9 +13,9 @@ public static class Patch_RaceProperties
         public static void Postfix(ThingDef parentDef, ref IEnumerable<StatDrawEntry> __result)
         {
             var bodyClock = BodyClock.Diurnal;
-            if (NocturnalAnimalsMod.instance.Settings.AnimalSleepType.ContainsKey(parentDef.defName))
+            if (NocturnalAnimalsMod.instance.Settings.AnimalSleepType.TryGetValue(parentDef.defName, out var value))
             {
-                bodyClock = (BodyClock)NocturnalAnimalsMod.instance.Settings.AnimalSleepType[parentDef.defName];
+                bodyClock = (BodyClock)value;
             }
 
             // Body clock
