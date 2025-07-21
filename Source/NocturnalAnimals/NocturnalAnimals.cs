@@ -13,15 +13,11 @@ public class NocturnalAnimals
 
     static NocturnalAnimals()
     {
-#if DEBUG
-                Log.Error("XeoNovaDan left debugging enabled in Nocturnal Animals - please let him know!");
-#endif
         AllAnimals = DefDatabase<ThingDef>.AllDefsListForReading
-            .Where(def => def.race is { Animal: true })
+            .Where(def => def.race is { Animal: true } && !def.IsCorpse)
             .OrderBy(def => def.label).ToList();
         UpdateAnimalSleepTypes();
-        var HarmonyInstance = new Harmony("XeoNovaDan.NocturnalAnimals");
-        HarmonyInstance.PatchAll(Assembly.GetExecutingAssembly());
+        new Harmony("XeoNovaDan.NocturnalAnimals").PatchAll(Assembly.GetExecutingAssembly());
     }
 
     public static void UpdateAnimalSleepTypes()

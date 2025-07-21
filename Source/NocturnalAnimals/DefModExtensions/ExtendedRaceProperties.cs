@@ -4,11 +4,11 @@ namespace NocturnalAnimals;
 
 public class ExtendedRaceProperties : DefModExtension
 {
-    private static readonly ExtendedRaceProperties defaultValues = new ExtendedRaceProperties();
+    private static readonly ExtendedRaceProperties defaultValues = new();
 
     public BodyClock bodyClock;
 
-    public static ExtendedRaceProperties Get(Def def)
+    private static ExtendedRaceProperties get(Def def)
     {
         return def.GetModExtension<ExtendedRaceProperties>() ?? defaultValues;
     }
@@ -16,20 +16,20 @@ public class ExtendedRaceProperties : DefModExtension
 
     public static void Update(ThingDef animal)
     {
-        if (NocturnalAnimalsMod.instance.Settings.AnimalSleepType.ContainsKey(animal.defName))
+        if (NocturnalAnimalsMod.Instance.Settings.AnimalSleepType.ContainsKey(animal.defName))
         {
             return;
         }
 
-        var extendedRaceProps = Get(animal);
+        var extendedRaceProps = get(animal);
         if (extendedRaceProps == null)
         {
-            NocturnalAnimalsMod.instance.Settings.AnimalSleepType[animal.defName] = 0;
+            NocturnalAnimalsMod.Instance.Settings.AnimalSleepType[animal.defName] = 0;
             return;
         }
 
 
-        NocturnalAnimalsMod.instance.Settings.AnimalSleepType[animal.defName] =
+        NocturnalAnimalsMod.Instance.Settings.AnimalSleepType[animal.defName] =
             (int)extendedRaceProps.bodyClock;
     }
 }

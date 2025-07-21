@@ -15,15 +15,15 @@ internal class NocturnalAnimalsMod : Mod
     /// <summary>
     ///     The instance of the settings to be read by the mod
     /// </summary>
-    public static NocturnalAnimalsMod instance;
+    public static NocturnalAnimalsMod Instance;
 
-    private static readonly Vector2 iconSize = new Vector2(58f, 58f);
+    private static readonly Vector2 iconSize = new(58f, 58f);
 
-    private static readonly Vector2 buttonSize = new Vector2(120f, 25f);
+    private static readonly Vector2 buttonSize = new(120f, 25f);
 
-    private static readonly Vector2 searchSize = new Vector2(200f, 25f);
+    private static readonly Vector2 searchSize = new(200f, 25f);
 
-    private static Listing_Standard listing_Standard;
+    private static Listing_Standard listingStandard;
 
     private static string currentVersion;
 
@@ -31,7 +31,7 @@ internal class NocturnalAnimalsMod : Mod
 
     private static string searchText = "";
 
-    private static readonly Color alternateBackground = new Color(0.2f, 0.2f, 0.2f, 0.5f);
+    private static readonly Color alternateBackground = new(0.2f, 0.2f, 0.2f, 0.5f);
 
     /// <summary>
     ///     The private settings
@@ -44,11 +44,8 @@ internal class NocturnalAnimalsMod : Mod
     /// <param name="content"></param>
     public NocturnalAnimalsMod(ModContentPack content) : base(content)
     {
-        instance = this;
-        if (instance.Settings.AnimalSleepType == null)
-        {
-            instance.Settings.AnimalSleepType = new Dictionary<string, int>();
-        }
+        Instance = this;
+        Instance.Settings.AnimalSleepType ??= new Dictionary<string, int>();
 
         currentVersion =
             VersionFromManifest.GetVersionFromModMetaData(content.ModMetaData);
@@ -61,14 +58,10 @@ internal class NocturnalAnimalsMod : Mod
     {
         get
         {
-            if (settings == null)
-            {
-                settings = GetSettings<NocturnalAnimalsSettings>();
-            }
+            settings ??= GetSettings<NocturnalAnimalsSettings>();
 
             return settings;
         }
-        set => settings = value;
     }
 
     /// <summary>
@@ -80,7 +73,7 @@ internal class NocturnalAnimalsMod : Mod
         return "[XND] Nocturnal Animals";
     }
 
-    private static void DrawButton(Action action, string text, Vector2 pos)
+    private static void drawButton(Action action, string text, Vector2 pos)
     {
         var rect = new Rect(pos.x, pos.y, buttonSize.x, buttonSize.y);
         if (!Widgets.ButtonText(rect, text, true, false, Color.white))
@@ -100,36 +93,33 @@ internal class NocturnalAnimalsMod : Mod
     {
         base.DoSettingsWindowContents(rect);
 
-        listing_Standard = new Listing_Standard();
-        listing_Standard.Begin(rect);
+        listingStandard = new Listing_Standard();
+        listingStandard.Begin(rect);
         Text.Font = GameFont.Medium;
-        var headerLabel = listing_Standard.Label("NocturnalAnimals.BodyClocks".Translate());
+        var headerLabel = listingStandard.Label("NocturnalAnimals.BodyClocks".Translate());
 
-        if (instance.Settings.AnimalSleepType == null)
-        {
-            instance.Settings.AnimalSleepType = new Dictionary<string, int>();
-        }
+        Instance.Settings.AnimalSleepType ??= new Dictionary<string, int>();
 
-        if (instance.Settings.AnimalSleepType.Any())
+        if (Instance.Settings.AnimalSleepType.Any())
         {
-            DrawButton(() =>
+            drawButton(() =>
                 {
                     Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(
                         "NocturnalAnimals.reset.confirm".Translate(),
-                        delegate { instance.Settings.ResetManualValues(); }));
+                        delegate { Instance.Settings.ResetManualValues(); }));
                 }, "NocturnalAnimals.reset.button".Translate(),
                 new Vector2(headerLabel.position.x + headerLabel.width - buttonSize.x,
                     headerLabel.position.y));
         }
 
         Text.Font = GameFont.Small;
-        listing_Standard.CheckboxLabeled("NocturnalAnimals.logging.label".Translate(), ref Settings.VerboseLogging,
+        listingStandard.CheckboxLabeled("NocturnalAnimals.logging.label".Translate(), ref Settings.VerboseLogging,
             "NocturnalAnimals.logging.tooltip".Translate());
         if (currentVersion != null)
         {
-            listing_Standard.Gap();
+            listingStandard.Gap();
             GUI.contentColor = Color.gray;
-            listing_Standard.Label("NocturnalAnimals.version.label".Translate(currentVersion));
+            listingStandard.Label("NocturnalAnimals.version.label".Translate(currentVersion));
             GUI.contentColor = Color.white;
         }
 
@@ -142,7 +132,7 @@ internal class NocturnalAnimalsMod : Mod
             headerLabel.position + new Vector2((rect.width / 2) - (searchSize.x / 2), 0),
             searchSize), "NocturnalAnimals.search".Translate());
 
-        listing_Standard.End();
+        listingStandard.End();
 
         var allAnimals = NocturnalAnimals.AllAnimals;
         if (!string.IsNullOrEmpty(searchText))
@@ -178,14 +168,14 @@ internal class NocturnalAnimalsMod : Mod
             }
 
             var raceLabel = $"{animal.label.CapitalizeFirst()} ({animal.defName})";
-            DrawIcon(animal,
+            drawIcon(animal,
                 new Rect(rowRect.position, iconSize));
             var selectorRect = new Rect(rowRect.position + new Vector2(iconSize.x, 0),
                 rowRect.size - new Vector2(iconSize.x, 0));
             var section = selectorRect.width / 4;
             var sectionVertical = selectorRect.height / 7 * 3;
             var selectedValue = 0;
-            if (instance.Settings.AnimalSleepType.TryGetValue(animal.defName, out var value))
+            if (Instance.Settings.AnimalSleepType.TryGetValue(animal.defName, out var value))
             {
                 selectedValue = value;
             }
@@ -199,40 +189,40 @@ internal class NocturnalAnimalsMod : Mod
                     new Vector2(selectorRect.width / 2, sectionVertical)), modInfo);
             Text.Anchor = anchor;
 
-            if (RadioButtonLabeledLeft(
+            if (radioButtonLabeledLeft(
                     new Rect(selectorRect.position + new Vector2(0, sectionVertical),
                         new Vector2(section, sectionVertical)),
                     "NocturnalAnimals.BodyClock_Diurnal".Translate(),
                     selectedValue == 0, "NocturnalAnimals.BodyClock_Diurnal_Description".Translate()))
             {
-                instance.Settings.AnimalSleepType[animal.defName] = 0;
+                Instance.Settings.AnimalSleepType[animal.defName] = 0;
             }
 
-            if (RadioButtonLabeledLeft(
+            if (radioButtonLabeledLeft(
                     new Rect(selectorRect.position + new Vector2(section, sectionVertical),
                         new Vector2(section, sectionVertical)),
                     "NocturnalAnimals.BodyClock_Nocturnal".Translate(),
                     selectedValue == 1, "NocturnalAnimals.BodyClock_Nocturnal_Description".Translate()))
             {
-                instance.Settings.AnimalSleepType[animal.defName] = 1;
+                Instance.Settings.AnimalSleepType[animal.defName] = 1;
             }
 
-            if (RadioButtonLabeledLeft(
+            if (radioButtonLabeledLeft(
                     new Rect(selectorRect.position + new Vector2(section * 2, sectionVertical),
                         new Vector2(section, sectionVertical)),
                     "NocturnalAnimals.BodyClock_Crepuscular".Translate(),
                     selectedValue == 2, "NocturnalAnimals.BodyClock_Crepuscular_Description".Translate()))
             {
-                instance.Settings.AnimalSleepType[animal.defName] = 2;
+                Instance.Settings.AnimalSleepType[animal.defName] = 2;
             }
 
-            if (RadioButtonLabeledLeft(
+            if (radioButtonLabeledLeft(
                     new Rect(selectorRect.position + new Vector2(section * 3, sectionVertical),
                         new Vector2(section, sectionVertical)),
                     "NocturnalAnimals.BodyClock_Cathemeral".Translate(),
                     selectedValue == 3, "NocturnalAnimals.BodyClock_Cathemeral_Description".Translate()))
             {
-                instance.Settings.AnimalSleepType[animal.defName] = 3;
+                Instance.Settings.AnimalSleepType[animal.defName] = 3;
             }
         }
 
@@ -240,7 +230,7 @@ internal class NocturnalAnimalsMod : Mod
         Widgets.EndScrollView();
     }
 
-    public static bool RadioButtonLabeledLeft(Rect rect, string labelText, bool chosen, string tooltip)
+    private static bool radioButtonLabeledLeft(Rect rect, string labelText, bool chosen, string tooltip)
     {
         var anchor = Text.Anchor;
         Text.Anchor = TextAnchor.MiddleLeft;
@@ -250,7 +240,7 @@ internal class NocturnalAnimalsMod : Mod
         return Widgets.RadioButton(rect.x, rect.y + (rect.height / 2f) - 12f, chosen);
     }
 
-    private void DrawIcon(ThingDef animal, Rect rect)
+    private static void drawIcon(ThingDef animal, Rect rect)
     {
         var pawnKind = DefDatabase<PawnKindDef>.GetNamedSilentFail(animal.defName);
 

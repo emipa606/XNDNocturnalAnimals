@@ -2,5 +2,17 @@
   "Continued": true,
   "CanAdd": "0",
   "CanRemove": "0",
-  "PreviewVersion": "1.5"
+  "PreviewVersion": "1.6",
+  "Patches": true,
+  "Defs": false,
+  "Assemblies": true,
+  "LinesOfCode": 17130,
+  "LinesOfXML": 8641,
+  "CodeBaseSize": 70,
+  "LastXmlCleaning": "2025-07-21T18:31:12.1255724+02:00",
+  "SocialImageSet": true,
+  "SearchTags": [
+    " body clocks",
+    " immersion"
+  ]
 }

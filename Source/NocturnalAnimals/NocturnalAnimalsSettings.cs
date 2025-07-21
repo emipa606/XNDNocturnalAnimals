@@ -8,7 +8,7 @@ namespace NocturnalAnimals;
 /// </summary>
 internal class NocturnalAnimalsSettings : ModSettings
 {
-    public Dictionary<string, int> AnimalSleepType = new Dictionary<string, int>();
+    public Dictionary<string, int> AnimalSleepType = new();
     private List<string> animalSleepTypeKeys;
     private List<int> animalSleepTypeValues;
 
