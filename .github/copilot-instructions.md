@@ -1,33 +1,51 @@
-# GitHub Copilot Instructions for RimWorld Modding Project
-
-Thank you for contributing to this RimWorld modding project. This file provides an overview of the mod, its key features, and systems, as well as coding patterns, XML integration methods, Harmony patching, and how to work effectively with GitHub Copilot.
+# GitHub Copilot Instructions for [XND] Nocturnal Animals (Continued)
 
 ## Mod Overview and Purpose
-This mod is designed to enhance the gameplay experience in RimWorld by introducing new race properties and behavioral mechanics for animals, focusing on nocturnal and diurnal activities. The primary goal is to add depth and realism to animal behaviors based on the time of day, affecting their activity patterns across different races.
+[XND] Nocturnal Animals enriches the immersive experience of RimWorld by introducing diverse circadian rhythms for animals. This modification allows certain animals to behave more accurately in accordance with their real-life counterparts. For example, foxes will now be nocturnal, sleeping during the day and active at night.
+
+The mod introduces three different types of body clocks for animals:
+- **Diurnal**: Awake during the day and asleep at night (vanilla behavior).
+- **Nocturnal**: Awake during the night and asleep during the day.
+- **Crepuscular**: Active during mornings and evenings, and resting during midday and midnight.
 
 ## Key Features and Systems
-- **Extended Race Properties**: Enhancements allow modders to define specific behaviors for different animal races, particularly focusing on nocturnal and diurnal activity cycles.
-- **Dynamic Body Clock**: Implements biological clock behaviors for animals to simulate realistic rest and activity cycles.
-- **Customized Job Prioritization**: Modifies task assignment through job priorities based on an animal's active hours.
-- **Special Display Information**: Provides additional insights about animals via extended race properties, accessible in the game's information panels.
+- **Localized Translations**: Available in English, Russian, and French.
+- **In-Game Settings**: Allows players to customize the sleep patterns for all animals.
+- **Cathemeral Type**: A flexible schedule for animals that don't precisely fit other categories.
+- **Compatibility**: Works seamlessly with Vanilla Animals Expanded mods and is easy to integrate with other mods, although unpatched animals default to diurnal behavior.
 
 ## Coding Patterns and Conventions
-- **DefModExtensions**: This pattern is used in the `ExtendedRaceProperties.cs` file for extending the `Def` definitions with additional data fields.
-- **Static Classes for Patching**: Harmony patches are managed in static classes, such as `Patch_JobGiver_GetRest` and `Patch_RaceProperties`, organized by the functionality they modify.
-- **Private Method Conventions**: Helper methods, such as `DrawIcon` in `NocturnalAnimalsMod.cs`, are kept private and are called internally to maintain encapsulation.
+- **Namespace Organization**: The mod code is organized under `NocturnalAnimals`, following RimWorld's modding convention.
+- **Classes and Members**: Separation of concerns is maintained by organizing functionality into classes like `NocturnalAnimals`, `NocturnalAnimalsMod`, `NocturnalAnimalsSettings`, and others.
+- **Settings Management**: Implemented in `NocturnalAnimalsSettings`, leveraging RimWorld's setting framework.
 
 ## XML Integration
-- XML is used to define properties and attributes for animals that are parsed and interpreted by `ExtendedRaceProperties`. Mod developers should adhere to XML conventions for compatibility and maintain proper file structures for RimWorld modding.
+XML files are utilized for defining patches for various animal categories:
+- Patches are located in directories such as `Patches\LegacyArk.xml`, `Patches\Core\Races_Animal_BigCats.xml`, and more.
+- These XML files describe adjustments necessary for integrating different animals with the mod's circadian rhythm system.
 
 ## Harmony Patching
-- Harmony is used for altering base game functionality. Static classes such as `Patch_JobGiver_GetRest` and `Patch_RaceProperties` contain patches that modify game methods to implement custom behavior like rest priority for nocturnal animals.
-- Follow best practices for Harmony patching to avoid conflicts, and ensure compatibility with other mods by checking for existing patches on targeted methods.
+- The mod uses the **Harmony Patch Library** to modify RimWorld's base game's behavior safely and dynamically.
+- Patching is primarily focused on augmenting animal behaviors and circadian rhythm changes.
 
 ## Suggestions for Copilot
-- When generating methods for handling XML data, consider inputs for different animal race properties and ensure they are compatible with existing Def structures.
-- While designing Harmony patches, instruct Copilot to create safety checks for existing prefixes, postfixes, or transpilers to prevent overriding existing mod patches.
-- Utilize Copilot to automate the generation of boilerplate C# code for new ModSettings features, focusing on user interface settings customization.
-- For debugging purposes, suggest meaningful log messages in each method, especially when modifying crucial game mechanics like animal job prioritization or race property extensions.
+- **Automatic Patch Generation**: Create XML templates to help modders quickly add support for new animals by suggesting patterns based on existing XML files.
+- **Helper Functions**: Suggest C# snippets to efficiently read and write settings utilizing `ExposeData` methodology.
+- **Error Handling**: Recommend best practices and code snippets for ensuring smooth mod integration and error management, especially in scenarios involving adding and removing mods in save games.
+- **Localization Support**: Propose string building patterns to ease adding new translations or enhancing existing ones.
 
-## Conclusion
-This mod project provides a versatile framework for expanding RimWorld's animal behavior dynamics. Contributors should follow established coding patterns, utilize XML for flexible data editing, and perform careful Harmony patching to maintain compatibility across different mods. Utilize Copilot as an efficient tool to streamline development tasks and ensure adherence to project standards. Happy modding!
+By using the information provided in this file, developers and contributors can extend or modify the [XND] Nocturnal Animals mod effectively, following the established conventions and utilizing suggested practices for further improvements.
+
+## Project Solution Guidelines
+- Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
+- Use these in-solution XML files as the primary files for reference and modification.
+- The `.github/copilot-instructions.md` file is included in the solution under the `.github` solution folder, so it should be read/modified from within the solution instead of using paths outside the solution. Update this file once only, as it and the parent-path solution reference point to the same file in this workspace.
+- When making functional changes in this mod, ensure the documented features stay in sync with implementation; use the in-solution `.github` copy as the primary file.
+- In the solution is also a project called Assembly-CSharp, containing a read-only version of the decompiled game source, for reference and debugging purposes.
+- For any new documentation, update this copilot-instructions.md file rather than creating separate documentation files.
+
+
+## Hard rules (must follow)
+- Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
+- Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+

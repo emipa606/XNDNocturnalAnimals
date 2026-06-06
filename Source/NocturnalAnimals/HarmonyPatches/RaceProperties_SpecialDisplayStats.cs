@@ -11,7 +11,12 @@ public static class RaceProperties_SpecialDisplayStats
     public static void Postfix(ThingDef parentDef, ref IEnumerable<StatDrawEntry> __result)
     {
         var bodyClock = BodyClock.Diurnal;
-        if (NocturnalAnimalsMod.Instance.Settings.AnimalSleepType.TryGetValue(parentDef.defName, out var value))
+        var defNameToLookup = parentDef.defName;
+        if (parentDef.IsCorpse && defNameToLookup.StartsWith("Corpse_"))
+        {
+            defNameToLookup = defNameToLookup.Substring(7);
+        }
+        if (NocturnalAnimalsMod.Instance.Settings.AnimalSleepType.TryGetValue(defNameToLookup, out var value))
         {
             bodyClock = (BodyClock)value;
         }
