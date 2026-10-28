@@ -1,40 +1,111 @@
 # GitHub Copilot Instructions for [XND] Nocturnal Animals (Continued)
 
-## Mod Overview and Purpose
-[XND] Nocturnal Animals enriches the immersive experience of RimWorld by introducing diverse circadian rhythms for animals. This modification allows certain animals to behave more accurately in accordance with their real-life counterparts. For example, foxes will now be nocturnal, sleeping during the day and active at night.
+Welcome to the [XND] Nocturnal Animals (Continued) mod for RimWorld. This mod adds different body clocks for animals, enhancing the immersion of the game world. Below are the detailed instructions to help you effectively use GitHub Copilot for developing this mod.
 
-The mod introduces three different types of body clocks for animals:
-- **Diurnal**: Awake during the day and asleep at night (vanilla behavior).
-- **Nocturnal**: Awake during the night and asleep during the day.
-- **Crepuscular**: Active during mornings and evenings, and resting during midday and midnight.
+## Mod Overview and Purpose
+
+The [XND] Nocturnal Animals (Continued) mod enhances the realism of animal behavior in RimWorld by implementing different types of circadian rhythms. These rhythms include:
+
+- **Diurnal**: Animals are awake during the day and sleep through the night (default vanilla behavior).
+- **Nocturnal**: Animals are awake during the night and sleep through the day.
+- **Crepuscular**: Animals are awake during mornings and evenings, resting during the day and night.
+
+The mod also includes in-game settings for all animals, allowing for customization and flexibility. Additionally, it adds a new "Cathemeral" type for animals that don't fit into the other categories.
 
 ## Key Features and Systems
-- **Localized Translations**: Available in English, Russian, and French.
-- **In-Game Settings**: Allows players to customize the sleep patterns for all animals.
-- **Cathemeral Type**: A flexible schedule for animals that don't precisely fit other categories.
-- **Compatibility**: Works seamlessly with Vanilla Animals Expanded mods and is easy to integrate with other mods, although unpatched animals default to diurnal behavior.
+
+### Body Clock Types
+- **Diurnal**: Animals are awake during the day and sleep through the night.
+- **Nocturnal**: Animals are awake during the night and sleep through the day.
+- **Crepuscular**: Animals are awake during mornings and evenings, resting during the day and night.
+- **Cathemeral**: Animals that have a mixed sleep pattern.
+
+### In-Game Settings
+- Customizable settings for each animal type.
+- Support for legacy animals through patches.
+
+### XML Integration
+XML files are used to define and patch various animal types. Key XML files include:
+- `LegacyArk.xml`
+- `Races_Animal_BigCats.xml`
+- `Races_Animal_Birds.xml`
+- `Races_Animal_Giant.xml`
+- `Races_Animal_Hares.xml`
+
+### Harmony Patching
+The mod uses the Harmony Patch Library to modify the behavior of vanilla and mod-added animals. This ensures compatibility with other mods.
 
 ## Coding Patterns and Conventions
-- **Namespace Organization**: The mod code is organized under `NocturnalAnimals`, following RimWorld's modding convention.
-- **Classes and Members**: Separation of concerns is maintained by organizing functionality into classes like `NocturnalAnimals`, `NocturnalAnimalsMod`, `NocturnalAnimalsSettings`, and others.
-- **Settings Management**: Implemented in `NocturnalAnimalsSettings`, leveraging RimWorld's setting framework.
+
+### C# Coding Patterns
+- **Mod Structure**: The mod is structured with a main class `NocturnalAnimals` that handles the core logic, a settings class `NocturnalAnimalsSettings`, and a mod class `NocturnalAnimalsMod`.
+- **Method Naming**: Methods are named descriptively, such as `UpdateAnimalSleepTypes` and `ExposeData`.
+- **Encapsulation**: Classes and methods are encapsulated to maintain clean and maintainable code.
+- **Comments and Documentation**: Code is well-commented to explain complex logic and usage.
+
+### XML Conventions
+- **Def Files**: XML files are used to define and patch animal types.
+- **Patch Structure**: Patches are structured to modify specific attributes or behaviors of animals.
+- **Localization**: XML files include support for different languages, such as Russian and French.
 
 ## XML Integration
-XML files are utilized for defining patches for various animal categories:
-- Patches are located in directories such as `Patches\LegacyArk.xml`, `Patches\Core\Races_Animal_BigCats.xml`, and more.
-- These XML files describe adjustments necessary for integrating different animals with the mod's circadian rhythm system.
+
+XML files are essential for defining and patching animal types. Here is an example of an XML patch file:
+
+xml
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <PatchDef>
+    <Operation Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[@defName="Animal_Fox"]</xpath>
+      <value>
+        <defName>Animal_Fox</defName>
+        <bodyClockType>Nocturnal</bodyClockType>
+      </value>
+    </Operation>
+  </PatchDef>
+</Defs>
+
+
+This patch file modifies the `Animal_Fox` def to set its body clock type to "Nocturnal".
 
 ## Harmony Patching
-- The mod uses the **Harmony Patch Library** to modify RimWorld's base game's behavior safely and dynamically.
-- Patching is primarily focused on augmenting animal behaviors and circadian rhythm changes.
+
+Harmony patching is used to modify the behavior of vanilla and mod-added animals. Here is an example of a Harmony patch in C#:
+
+csharp
+using HarmonyLib;
+using RimWorld;
+using Verse;
+
+public static class NocturnalAnimals
+{
+    public static void UpdateAnimalSleepTypes()
+    {
+        foreach (var animal in Find.Map.mapPawns.AllPawns)
+        {
+            if (animal.RaceProps.bodyClockType == BodyClock.Nocturnal)
+            {
+                animal.mindState.duty = null;
+                animal.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                animal.jobs.TryTakeOrderedJob(new Job(DefDatabase<JobDef>.GetNamed("NocturnalSleep")), JobCondition.InterruptForced);
+            }
+        }
+    }
+}
+
+
+This code snippet uses Harmony to patch the `UpdateAnimalSleepTypes` method, modifying the behavior of nocturnal animals.
 
 ## Suggestions for Copilot
-- **Automatic Patch Generation**: Create XML templates to help modders quickly add support for new animals by suggesting patterns based on existing XML files.
-- **Helper Functions**: Suggest C# snippets to efficiently read and write settings utilizing `ExposeData` methodology.
-- **Error Handling**: Recommend best practices and code snippets for ensuring smooth mod integration and error management, especially in scenarios involving adding and removing mods in save games.
-- **Localization Support**: Propose string building patterns to ease adding new translations or enhancing existing ones.
 
-By using the information provided in this file, developers and contributors can extend or modify the [XND] Nocturnal Animals mod effectively, following the established conventions and utilizing suggested practices for further improvements.
+1. **Mod Structure**: Use Copilot to generate the basic structure of the mod, including the main class, settings class, and mod class.
+2. **Method Implementations**: Use Copilot to generate method implementations, such as `UpdateAnimalSleepTypes` and `ExposeData`.
+3. **XML Patches**: Use Copilot to generate XML patch files for defining and patching animal types.
+4. **Harmony Patches**: Use Copilot to generate Harmony patches for modifying the behavior of vanilla and mod-added animals.
+5. **Localization**: Use Copilot to generate XML files for different languages, such as Russian and French.
+
+By following these instructions, you can effectively use GitHub Copilot to enhance and maintain the [XND] Nocturnal Animals (Continued) mod for RimWorld.
 
 ## Project Solution Guidelines
 - Relevant mod XML files are included as Solution Items under the solution folder named XML, these can be read and modified from within the solution.
@@ -48,4 +119,6 @@ By using the information provided in this file, developers and contributors can 
 ## Hard rules (must follow)
 - Do NOT run commands that modify the repo (no git commit, git apply, dotnet format) unless explicitly asked.
 - Prefer minimal reads: read only the smallest code region needed (around the suspicious lines).
+- When mentioning SonarQube issues, automatically use the SonarQube MCP service to fetch and address issues instead of making inferred fixes without querying SonarQube first.
+- When mentioning the rimworld log, automatically use the Rimworld MCP service to fetch the log.
 

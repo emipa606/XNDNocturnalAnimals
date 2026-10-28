@@ -14,8 +14,9 @@ public static class RaceProperties_SpecialDisplayStats
         var defNameToLookup = parentDef.defName;
         if (parentDef.IsCorpse && defNameToLookup.StartsWith("Corpse_"))
         {
-            defNameToLookup = defNameToLookup.Substring(7);
+            defNameToLookup = defNameToLookup[7..];
         }
+
         if (NocturnalAnimalsMod.Instance.Settings.AnimalSleepType.TryGetValue(defNameToLookup, out var value))
         {
             bodyClock = (BodyClock)value;

@@ -34,11 +34,6 @@ internal class NocturnalAnimalsMod : Mod
     private static readonly Color alternateBackground = new(0.2f, 0.2f, 0.2f, 0.5f);
 
     /// <summary>
-    ///     The private settings
-    /// </summary>
-    private NocturnalAnimalsSettings settings;
-
-    /// <summary>
     ///     Constructor
     /// </summary>
     /// <param name="content"></param>
@@ -58,9 +53,9 @@ internal class NocturnalAnimalsMod : Mod
     {
         get
         {
-            settings ??= GetSettings<NocturnalAnimalsSettings>();
+            field ??= GetSettings<NocturnalAnimalsSettings>();
 
-            return settings;
+            return field;
         }
     }
 
@@ -88,13 +83,13 @@ internal class NocturnalAnimalsMod : Mod
     /// <summary>
     ///     The settings-window
     /// </summary>
-    /// <param name="rect"></param>
-    public override void DoSettingsWindowContents(Rect rect)
+    /// <param name="inRect"></param>
+    public override void DoSettingsWindowContents(Rect inRect)
     {
-        base.DoSettingsWindowContents(rect);
+        base.DoSettingsWindowContents(inRect);
 
         listingStandard = new Listing_Standard();
-        listingStandard.Begin(rect);
+        listingStandard.Begin(inRect);
         Text.Font = GameFont.Medium;
         var headerLabel = listingStandard.Label("NocturnalAnimals.BodyClocks".Translate());
 
@@ -125,11 +120,11 @@ internal class NocturnalAnimalsMod : Mod
 
         searchText =
             Widgets.TextField(
-                new Rect(headerLabel.position + new Vector2((rect.width / 2) - (searchSize.x / 2), 0),
+                new Rect(headerLabel.position + new Vector2((inRect.width / 2) - (searchSize.x / 2), 0),
                     searchSize),
                 searchText);
         TooltipHandler.TipRegion(new Rect(
-            headerLabel.position + new Vector2((rect.width / 2) - (searchSize.x / 2), 0),
+            headerLabel.position + new Vector2((inRect.width / 2) - (searchSize.x / 2), 0),
             searchSize), "NocturnalAnimals.search".Translate());
 
         listingStandard.End();
@@ -143,10 +138,10 @@ internal class NocturnalAnimalsMod : Mod
                 .ToList();
         }
 
-        var borderRect = rect;
+        var borderRect = inRect;
         borderRect.y += headerLabel.y + 90;
         borderRect.height -= headerLabel.y + 90;
-        var scrollContentRect = rect;
+        var scrollContentRect = inRect;
         scrollContentRect.height = allAnimals.Count * 61f;
         scrollContentRect.width -= 20;
         scrollContentRect.x = 0;
@@ -244,9 +239,14 @@ internal class NocturnalAnimalsMod : Mod
     {
         var pawnKind = DefDatabase<PawnKindDef>.GetNamedSilentFail(animal.defName);
 
-        var texture2D = pawnKind?.lifeStages?.Last()?.bodyGraphicData?.Graphic?.MatSingle?.mainTexture;
+        var texture2D = pawnKind?.lifeStages?[^1]?.bodyGraphicData?.Graphic?.MatSingle?.mainTexture;
 
         if (texture2D == null)
+        {
+            return;
+        }
+
+        if (pawnKind == null)
         {
             return;
         }

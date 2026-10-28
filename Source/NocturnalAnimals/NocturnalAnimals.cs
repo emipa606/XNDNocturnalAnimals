@@ -7,7 +7,7 @@ using Verse;
 namespace NocturnalAnimals;
 
 [StaticConstructorOnStartup]
-public class NocturnalAnimals
+public static class NocturnalAnimals
 {
     public static readonly List<ThingDef> AllAnimals;
 

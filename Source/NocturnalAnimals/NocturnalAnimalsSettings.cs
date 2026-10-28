@@ -9,10 +9,10 @@ namespace NocturnalAnimals;
 internal class NocturnalAnimalsSettings : ModSettings
 {
     public Dictionary<string, int> AnimalSleepType = new();
-    private List<string> animalSleepTypeKeys;
-    private List<int> animalSleepTypeValues;
 
     public bool VerboseLogging;
+    private List<string> animalSleepTypeKeys;
+    private List<int> animalSleepTypeValues;
 
     public override void ExposeData()
     {

@@ -20,15 +20,14 @@ public static class JobGiver_GetRest_GetPriority
             var instruction = instructionList[i];
 
             // Effectively turn 'if (num < 7 || num > 21)' into 'if (SleepHourFor(num, pawn))'
-            //Log.Message(instruction.operand?.GetType()?.ToStringSafe());
             if (!done && instruction.opcode == OpCodes.Ldloc_S &&
                 ((LocalBuilder)instruction.operand).LocalIndex == 4)
             {
-                yield return instruction; // int num = GenLocalDate.HourOfDay(pawn)
+                yield return instruction;
                 yield return new CodeInstruction(OpCodes.Ldarg_1); // pawn
                 yield return new CodeInstruction(OpCodes.Call,
                     AccessTools.Method(typeof(JobGiver_GetRest_GetPriority),
-                        nameof(SleepHourFor))); // SleepHourFor(num, pawn)
+                        nameof(SleepHourFor)));
 
                 var j = 1;
                 while (true)

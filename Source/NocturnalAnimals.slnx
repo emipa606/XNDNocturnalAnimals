@@ -6,4 +6,22 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="NocturnalAnimals/NocturnalAnimals.csproj" />
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/Keys.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Patches/Core/">
+    <File Path="../1.7/Patches/Core/Races_Animal_BigCats.xml" />
+    <File Path="../1.7/Patches/Core/Races_Animal_Birds.xml" />
+    <File Path="../1.7/Patches/Core/Races_Animal_Giant.xml" />
+    <File Path="../1.7/Patches/Core/Races_Animal_Hares.xml" />
+    <File Path="../1.7/Patches/Core/Races_Animal_Rodentlike.xml" />
+    <File Path="../1.7/Patches/Core/Races_Animal_Temperate.xml" />
+    <File Path="../1.7/Patches/Core/Races_Animal_WildCanines.xml" />
+  </Folder>
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.7/Patches/">
+    <File Path="../1.7/Patches/LegacyArk.xml" />
+  </Folder>
 </Solution>

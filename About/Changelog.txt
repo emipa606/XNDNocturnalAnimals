@@ -1,5 +1,8 @@
 # Changelog for XNDNocturnalAnimals
 
+1.7.0 - Mod updated for 1.7 and passed autotests
+
+
 1.6.1 - Animals will no longer show the wrong body clock when dead
 
 
